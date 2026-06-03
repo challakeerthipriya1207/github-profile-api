@@ -1,12 +1,17 @@
 const axios = require('axios');
 const db = require('../config/db');
 
-
 const fetchAndSaveProfile = async (req, res) => {
     const { username } = req.params;
 
     try {
-        const githubResponse = await axios.get(`https://api.github.com/users/${username}`);
+        // Setup headers to use the GitHub token if it exists (bypasses rate limits)
+        const config = process.env.GITHUB_TOKEN 
+            ? { headers: { Authorization: `token ${process.env.GITHUB_TOKEN}` } } 
+            : {};
+
+        // Fetch user data from GitHub API using the token configuration
+        const githubResponse = await axios.get(`https://api.github.com/users/${username}`, config);
         
         const insights = {
             username: githubResponse.data.login,
@@ -55,7 +60,6 @@ const fetchAndSaveProfile = async (req, res) => {
     }
 };
 
-
 const getAllProfiles = async (req, res) => {
     try {
         const [rows] = await db.execute('SELECT * FROM github_profiles ORDER BY created_at DESC');
@@ -69,7 +73,6 @@ const getAllProfiles = async (req, res) => {
         res.status(500).json({ success: false, error: "Failed to retrieve records." });
     }
 };
-
 
 const getProfileByUsername = async (req, res) => {
     const { username } = req.params;
