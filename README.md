@@ -3,8 +3,8 @@
 A professional production-ready RESTful API built with Node.js, Express.js, and MySQL using the MVC (Model-View-Controller) architecture. The application fetches real-time data from the public GitHub API, extracts core user insights, and caches them efficiently in a relational database.
 
 ## 🚀 Live Demo & API Endpoints
-* **Live API URL:** `YOUR_DEPLOYED_BACKEND_URL_HERE`
-* **Database Hosting:** Deployed on cloud instance
+* **Live API URL:** `https://github-profile-analyzer-api-7vp7.onrender.com`
+* **Database Hosting:** Deployed on Aiven Cloud (MySQL)
 
 ### API Endpoints Documentation
 * **`GET /api/github/:username`** - Fetches profile insights from GitHub, updates/saves them to the MySQL database, and returns the data.
@@ -25,5 +25,5 @@ A professional production-ready RESTful API built with Node.js, Express.js, and 
 
 1. **Clone the repository:**
    ```bash
-   git clone [https://github.com/YOUR_GITHUB_USERNAME/github-profile-api.git](https://github.com/YOUR_GITHUB_USERNAME/github-profile-api.git)
+   git clone [https://github.com/challakeerthipriya1207/github-profile-api](https://github.com/challakeerthipriya1207/github-profile-api)
    cd github-profile-api
